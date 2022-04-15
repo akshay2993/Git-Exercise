@@ -2,39 +2,40 @@
 
 echo "Welcome to the Employee Wage Computation Program!"
 
-wagePerHour=20
-workingHours=0
-totalSalary=0
-totalWorkingHours=0
-salary=0
-day=1
+function calculateWorkingHours() {
+	case $1 in
+		0)
+			workingHours=0;
+			;;
+
+		1)
+			workingHours=8;
+			;;
+		2)
+			workingHours=4;
+			;;
+	esac;
+	echo $workingHours;
+}
+
+wagePerHour=20;
+totalSalary=0;
+totalWorkingHours=0;
+day=1;
 
 while [[ $day -le 20 && $totalWorkingHours -lt 100 ]]
 do
-	isPresent=$((RANDOM%3));
-        case $isPresent in
-                0)
-                workingHours=0;
-                ;;
-
-                1)
-                workingHours=8;
-                ;;
-
-                2)
-                workingHours=4;
-                ;;
-        esac
-
-        totalWorkingHours=$(($totalWorkingHours + $workingHours));
+	workingHours=$(calculateWorkingHours $((RANDOM%3)));
+	totalWorkingHours=$(($totalWorkingHours + $workingHours));
 	if [ $totalWorkingHours -gt 100 ]
 	then
-		totalWorkingHour=$(($totalWorkingHours - $workingHours));
+		totalWorkingHours=$(($totalWorkingHours - $workingHours));
 		break;
 	fi
-        salary=$(($wagePerHour*$workingHours));
-        totalSalary=$(($totalSalary + $salary));
-        ((day++));
+	salary=$(($wagePerHour * $workingHours));
+	totalSalary=$(($totalSalary + $salary));
+	((day++));
 done
 
-echo "Employee has earned $totalSalary $ this month.";
+echo "Employee earned $totalSalary $ this month (Total working Hour : $totalWorkingHours)";
+
