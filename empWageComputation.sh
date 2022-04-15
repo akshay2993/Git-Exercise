@@ -19,8 +19,7 @@ do
         	;;
 
         	2)
-        	echo "Employee is working Part-time";
-        	workingHours=4;
+               	workingHours=4;
         	;;
 	esac
 
