@@ -8,16 +8,14 @@ isPresent=$((RANDOM%3));
 
 case $isPresent in
 	0)
-	echo "Employee is absent";
+	workingHours=0;
 	;;
 
 	1)
-	echo "Employee is present";
 	workingHours=8;
 	;;
 
 	2)
-	echo "Employee is working Part-time";
 	workingHours=4;
 	;;
 esac
