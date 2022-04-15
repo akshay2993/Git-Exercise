@@ -6,18 +6,21 @@ wagePerHour=20
 workingHours=0
 isPresent=$((RANDOM%3));
 
-if [ $isPresent -eq 0 ]
-then
-        echo "Employee is absent";
-elif [ $isPresent -eq 1 ]
-then
-        echo "Employee is present";
-	workingHours=8
-else
-	echo "Employee is Part-time";
-        workingHours=4
+case $isPresent in
+	0)
+	echo "Employee is absent";
+	;;
 
-fi
+	1)
+	echo "Employee is present";
+	workingHours=8;
+	;;
+
+	2)
+	echo "Employee is working Part-time";
+	workingHours=4;
+	;;
+esac
 
 dailyWage=$(( $wagePerHour*$workingHours ))
 echo "Employee's today's wage : $dailyWage $";
