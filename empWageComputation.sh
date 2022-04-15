@@ -4,29 +4,77 @@ echo "Welcome to the Employee Wage Computation Program!"
 
 wagePerHour=20
 workingHours=0
-isPresent=$((RANDOM%3));
 totalSalary=0
+totalWorkingHours=0
+salary=0
+day=1
 
-for ((day=1; day<=20; day++))
+while [[ $day -le 20 && $totalWorkingHours -lt 100 ]]
 do
-	case $isPresent in
-        	0)
-        	echo "Employee is absent";
-        	;;
+	isPresent=$((RANDOM%3));
+        case $isPresent in
+                0)
+                workingHours=0;
+                ;;
 
-        	1)
-        	echo "Employee is present";
-        	workingHours=8;
-        	;;
+                1)
+                workingHours=8;
+                ;;
 
-        	2)
-        	echo "Employee is working Part-time";
-        	workingHours=4;
-        	;;
-	esac
+                2)
+                workingHours=4;
+                ;;
+        esac
 
-	dailyWage=$(( $wagePerHour*$workingHours ))
-	totalSalary=$(( $dailyWage+$totalSalary ))
+        totalWorkingHours=$(($totalWorkingHours + $workingHours));
+	if [ $totalWorkingHours -gt 100 ]
+	then
+		totalWorkingHour=$(($totalWorkingHours - $workingHours));
+		break;
+	fi
+        salary=$(($wagePerHour*$workingHours));
+        totalSalary=$(($totalSalary + $salary));
+        ((day++));
 done
 
+
+
+
 echo "Employee has earned $totalSalary $ this month.";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#for ((day=1; day<=20; day++))
+#do
+#	case $isPresent in
+#        	0)
+#        	echo "Employee is absent";
+#        	;;
+#
+#        	1)
+#        	echo "Employee is present";
+#        	workingHours=8;
+#        	;;
+#
+#        	2)
+#        	echo "Employee is working Part-time";
+#        	workingHours=4;
+#        	;;
+#	esac
+#
+#	dailyWage=$(( $wagePerHour*$workingHours ))
+#	totalSalary=$(( $dailyWage+$totalSalary ))
+#done
+#
+#echo "Employee has earned $totalSalary $ this month.";
